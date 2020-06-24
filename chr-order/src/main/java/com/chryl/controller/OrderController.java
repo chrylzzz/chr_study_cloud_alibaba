@@ -45,5 +45,11 @@ public class OrderController {
         return orderService.get3(2);
     }
 
+    //测试自定义断言
+    @GetMapping("/get4")
+    public boolean getAge(Integer age) {
+        return true;
+    }
+
 
 }

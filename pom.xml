@@ -13,6 +13,7 @@
         <module>chr-goods</module>
         <module>chr-order</module>
         <module>chr-common</module>
+        <module>api-gateway</module>
     </modules>
 
     <parent>

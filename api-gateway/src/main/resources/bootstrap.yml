@@ -1,0 +1,38 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    nacos:
+      # 服务发现
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: c4c88d73-28c3-4978-ac2f-742ef2e30daf
+        cluster-name: CHRALIBABA
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: goods_route # 唯一标识,默认uuid
+          uri: lb://service-goods   # lb 是指从nacos中按照名称获得微服务, lb:// 就是 遵循负载均衡策略
+          order: 1  # 顺序, 越小优先级越大
+          predicates: # 断言,判断调教
+            - Path=/service-goods/**
+          filters:  # 过滤器
+            - StripPrefix=1 # 去除上一层路由的过滤器,去除上一层路由
+        - id: order_route
+          uri: lb://service-order
+          order: 1
+          predicates:
+            - Path=/servic-order/**
+            # 断言配置
+#            - Before=2021-07-23T09:42:44.761+08:00  # 请求必须早于的时间
+#            - Method=GET  # 请求必须是GET请求
+#            - Age=18,60   # 自定义断言
+          filters:
+            - StripPrefix=1
+            # 过滤器配置
+#            - SetStatus=250 #自定义状态码
+            - Log=true,false
