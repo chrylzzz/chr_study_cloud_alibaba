@@ -31,7 +31,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         ServerHttpRequest request = serverWebExchange.getRequest();
         String authorization = request.getHeaders().getFirst("Authorization");
         if (StringUtils.isBlank(authorization)
-                || StringUtils.equals("admin", authorization)) {//鉴权失败
+                || !StringUtils.equals("admin", authorization)) {//鉴权失败
 
             ServerHttpResponse response = serverWebExchange.getResponse();
             response.getHeaders().add("Content-Type", "application/json;charset=UTF-8");

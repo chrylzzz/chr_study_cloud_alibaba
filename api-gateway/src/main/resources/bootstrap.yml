@@ -26,7 +26,7 @@ spring:
           uri: lb://service-order
           order: 1
           predicates:
-            - Path=/servic-order/**
+            - Path=/servic-order/**   # 路由中有 servic-order 路径的都转发到该服务中service-order
             # 断言配置
 #            - Before=2021-07-23T09:42:44.761+08:00  # 请求必须早于的时间
 #            - Method=GET  # 请求必须是GET请求
@@ -35,4 +35,4 @@ spring:
             - StripPrefix=1
             # 过滤器配置
 #            - SetStatus=250 #自定义状态码
-            - Log=true,false
+#            - Log=true,false

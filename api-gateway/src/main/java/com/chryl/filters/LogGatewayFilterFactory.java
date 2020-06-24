@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Chr.yl
  */
-@Component
+//@Component
 public class LogGatewayFilterFactory extends AbstractGatewayFilterFactory<LogGatewayFilterFactory.Config> {
 
     public LogGatewayFilterFactory() {
