@@ -2,8 +2,10 @@ package com.chryl.client.fallback;
 
 import com.chryl.client.GoodsClient;
 import com.chryl.po.ChrGoods;
+import com.chryl.po.ReturnResult;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,6 +28,11 @@ public class GoodsClientFallbackFactory implements FallbackFactory<GoodsClient> 
                 chrGoods.setGoodsId(-100);
                 chrGoods.setGoodsName("出错,feign进行容错");
                 return chrGoods;
+            }
+
+            @Override
+            public ReturnResult reduceInventory(Integer goodsId, Integer number) {
+                return ReturnResult.create("数据错误~~", HttpStatus.BAD_REQUEST.toString());
             }
         };
     }
