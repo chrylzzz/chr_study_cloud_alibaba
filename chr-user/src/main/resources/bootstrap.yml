@@ -1,16 +1,8 @@
 server:
-  port: 8081
+  port: 8071
 spring:
   application:
-    name: service-goods
-#  # 配置 zipkin
-#  zipkin:
-#    base-url: http://127.0.0.1:9411/   # zipkin server的请求地址,通过改地址推送链路数据
-#    discovery-client-enabled: false   # 让 nacos 把它当成一个URL地址,而不要当成服务名
-#  #  配置 sleuth
-#  sleuth:
-#    sampler:
-#      probability: 1.0  # 采样的百分比 , 并不是所有的数据都要推送,测试时 为1
+    name: service-user
   datasource:
     name: vue-admin
     url: jdbc:mysql://127.0.0.1:3306/vue-admin?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
@@ -24,7 +16,6 @@ spring:
         hbm2ddl:
           auto: update
 #        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-# nacos
   main:
     allow-bean-definition-overriding: true  #springBoot 2.1 需要设定,防止重复
   cloud:
@@ -40,3 +31,8 @@ spring:
           file-extension: yaml
           namespace: c4c88d73-28c3-4978-ac2f-742ef2e30daf
           group: CHRALIBABA
+
+
+# rocket mq 配置
+rocketmq:
+  name-server: 192.168.228.128:9876

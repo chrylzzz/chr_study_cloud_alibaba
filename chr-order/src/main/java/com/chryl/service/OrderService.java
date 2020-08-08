@@ -2,7 +2,9 @@ package com.chryl.service;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.chryl.client.GoodsClient;
+import com.chryl.dao.OrderDao;
 import com.chryl.po.ChrGoods;
+import com.chryl.po.ChrOrder;
 import com.chryl.resource.MyTestResource;
 import com.chryl.resource.handler.MyBlockHandler;
 import com.chryl.resource.handler.MyFallbackHandler;
@@ -18,10 +20,20 @@ import org.springframework.stereotype.Service;
 public class OrderService {
 
     @Autowired
+    private OrderDao orderDao;
+
+    @Autowired
     private GoodsClient goodsClient;
 
     @Autowired
     MyTestResource myTestResource;
+
+    //创建订单
+    public void createOrder(ChrOrder chrOrder) {
+        orderDao.save(chrOrder);
+    }
+
+
 
     //无任何资源控制
     public ChrGoods get(Integer id) {
